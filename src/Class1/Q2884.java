@@ -14,11 +14,26 @@ public class Q2884 {
     int H = Integer.parseInt(st.nextToken());
     int M = Integer.parseInt(st.nextToken());
 
-    int n = (86400 - Math.abs(H * 3600 + M * 60 - 2700)) / 3600;
-    int n2 = (86400 - Math.abs(H * 3600 + M * 60 - 2700)) / ;
-    System.out.println(n);
-    System.out.println(n2);
+    if(H <= 23 && H >= 0 && M >= 0 && M <= 59) {
 
+      int second = H * 3600 + M * 60 - 2700;
+      int minute = M * 60 - 2700;
+
+      if (second >= 0) {
+        H = second / 3600;
+      } else {
+        H = (86400 - Math.abs(second)) / 3600;
+      }
+
+
+      if (minute < 0) {
+        M = 60 - (Math.abs(minute) / 60);
+      } else {
+        M = minute / 60;
+      }
+
+
+      System.out.println(H + " " + M);
+    }
   }
-
 }
