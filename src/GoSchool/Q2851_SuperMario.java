@@ -15,6 +15,11 @@ public class Q2851_SuperMario {
             arr[i] = sc.nextInt();
         }
 
+
+
+
+
+
         for (int i = 0; i < arr.length; i++) {
             a += arr[i];
 
