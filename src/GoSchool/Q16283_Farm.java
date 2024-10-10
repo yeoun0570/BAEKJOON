@@ -13,16 +13,22 @@ public class Q16283_Farm {
 
         int count = 0;
 
+        int x = 0;
+        int y = 0;
+
         for (int i = 1; i <= 1000; i++) {
             for (int j = 1; j <= 1000; j++) {
-                if (w == a * i + b * j && n == i + j) {
-                    System.out.println(i + " " + j);
+                if (w == a * i + b * j && n == (i + j)) {
                     count++;
-                    break;
+                    x = i;
+                    y = j;
                 }
             }
         }
-        if(count == 0 || count >= 2) {
+
+        if (count == 1) {
+            System.out.println(x + " " + y);
+        } else {
             System.out.println(-1);
         }
     }
