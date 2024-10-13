@@ -3,56 +3,43 @@ package GoSchool;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Q1816_SecretKey {
     public static void main(String[] args) throws IOException {
-
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        int n = Integer.parseInt(br.readLine());
+        int n = Integer.parseInt(br.readLine());  // 입력받을 숫자의 개수
         Long[] arr = new Long[n];
-        List<Integer> secretList = new ArrayList<>();
-        String result = "";
 
-
-        for(int i = 0; i < arr.length; i++){
+        // 숫자 배열 입력
+        for (int i = 0; i < n; i++) {
             arr[i] = Long.parseLong(br.readLine());
         }
 
-        for(int i = 0; i < arr.length; i++){
-
-
-            innerLoop:
-            for(int j = 2; j <= arr[i]; j++) {
-                while(arr[i] % j == 0) {
-                    arr[i] /= j;
-
-                    if(j != 1 && j <= 1000000) {
-                        secretList.add(j);
-                        break innerLoop;
-                    }
-                    else if (j != 1) {
-                        secretList.add(j);
-                        break innerLoop;
-                    }
-                }
+        // 각 숫자에 대해 처리
+        for (Long num : arr) {
+            if (isPrimeKey(num)) {
+                System.out.println("YES");
+            } else {
+                System.out.println("NO");
             }
-
-            for(int k = 0; k < secretList.size(); k++){
-                if(secretList.get(k) > 1000000){
-                    result = "YES";
-                } else {
-                    result = "NO";
-                    break;
-                }
-            }
-
-            System.out.println(result);
-
-            secretList = new ArrayList<>();
-            result = "";
         }
     }
+
+    // 숫자가 100만 이하의 소수로 나누어지지 않으면 true 반환
+    public static boolean isPrimeKey(Long num) {
+        if (num <= 1000000) {
+            return false;  // 100만 이하의 수는 소수가 아니므로 바로 NO
+        }
+
+        // 2부터 100만까지 나누어지는지 확인하고 나누어지면 false
+        for (int i = 2; i <= 1000000; i++) {
+            if (num % i == 0) {
+                return false;  // 100만 이하의 수로 나누어지면 NO
+            }
+        }
+
+        return true;  // 100만 이하의 소수로 나누어지지 않으면 YES
+    }
 }
+
